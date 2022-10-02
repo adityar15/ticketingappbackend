@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from CardModels import ResponseModel as CardModel
+from .CardModels import ResponseModel as CardModel
 from typing import List
 
 class RequestModel(BaseModel):

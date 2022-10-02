@@ -11,6 +11,6 @@ class Card(Base):
     rank = Column(Integer)
     text = Column(Text)
     category_id = Column(Integer, ForeignKey('categories.id'), nullable = False)
-    created_by = Column(Integer, ForeignKey('users.id'), nullable=False)
+    created_by = Column(Integer, ForeignKey('users.id'), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
