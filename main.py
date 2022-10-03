@@ -17,6 +17,7 @@ Project.Base.metadata.create_all(bind=engine)
 Category.Base.metadata.create_all(bind=engine)
 Card.Base.metadata.create_all(bind=engine)
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
