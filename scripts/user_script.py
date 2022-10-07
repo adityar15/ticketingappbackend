@@ -4,7 +4,7 @@ from fastapi import HTTPException
 
 
 from passlib.context import CryptContext
-from jwttoken import create_access_token
+from jwttoken import create_access_token, create_refresh_token
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -33,11 +33,13 @@ def login(user: UserModels.LoginRequestModel, db):
 
     elif existingUser and pwd_context.verify(user.password, existingUser.password):
         token = create_access_token({"email": existingUser.email, "id": existingUser.id})
+        refreshToken = create_refresh_token({"email": existingUser.email, "id": existingUser.id})
         return {
             "token": token,
             "email": existingUser.email,
             "name": existingUser.name,
-            "id": existingUser.id
+            "id": existingUser.id,
+            "refresh_token": refreshToken,
         }
     else:
-        raise HTTPException(status_code=405, detail="Incorrect credentials")
+        raise HTTPException(status_code=401, detail="Incorrect credentials")

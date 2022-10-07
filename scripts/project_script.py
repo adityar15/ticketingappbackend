@@ -8,12 +8,12 @@ def addNew(db, payload):
     db.refresh(project)
 
     categories = [
-        Category(project_id=project.id, title="Backlog", color="bg-blue-600"),
-        Category(project_id=project.id, title="To-Do", color="bg-orange-600"),
-        Category(project_id=project.id, title="Doing", color="bg-orange-600"),
-        Category(project_id=project.id, title="Code Review", color="bg-orange-600"),
-        Category(project_id=project.id, title="Testing", color="bg-orange-600"),
-        Category(project_id=project.id, title="Done", color="bg-green-600"),
+        Category(project_id=project.id, title="Backlog", color="#2563eb"),
+        Category(project_id=project.id, title="To-Do", color="#ea580c"),
+        Category(project_id=project.id, title="Doing", color="#ea580c"),
+        Category(project_id=project.id, title="Code Review", color="#ea580c"),
+        Category(project_id=project.id, title="Testing", color="#ea580c"),
+        Category(project_id=project.id, title="Done", color="#16a34a"),
     ]
 
     db.bulk_save_objects(categories)

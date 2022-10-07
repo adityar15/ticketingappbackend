@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 username = "root"
-password = "your_password"
+password = "adityar1521"
 database = "ticketing"
 host = "127.0.0.1"
 

@@ -23,6 +23,7 @@ class RequestModel(BaseModel):
          return value
 
 
+
 class LoginRequestModel(BaseModel):
     email: EmailStr
     password: str
@@ -33,3 +34,4 @@ class ResponseModel(BaseModel):
     id: int
     name: str
     email: EmailStr
+
