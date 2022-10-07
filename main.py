@@ -31,10 +31,6 @@ app.add_middleware(
 )
 
 
-
-
-
-
 @app.get("/")
 def printMessage():
     return {"message": "Hello World"}
@@ -56,8 +52,9 @@ def login(user: UserModels.LoginRequestModel, db:Session=Depends(get_db)):
         print("has rt")
         response = JSONResponse(content = loggedInUser)
         # expires in seconds
-        response.set_cookie(key="refresh_token", value=loggedInUser["refresh_token"], secure=True, httponly=True, expires=30 * 24 * 60 * 60 * 60)
+        response.set_cookie(key="refresh_token", value=loggedInUser["refresh_token"], secure=True, httponly=True, expires=30 * 24 * 60 * 60)
         response.set_cookie(key="access_token", value=loggedInUser["token"], secure=True, expires=10 * 60 * 60)
+        print(response)
         return response
     return loggedInUser
 
@@ -74,6 +71,13 @@ def getAll(user_id: int, db: Session = Depends(get_db)):
     return project_script.getAllProjects(db, user_id)
 
 
+
+# @app.get("/get_projects/{user_id}", status_code=200, response_model=List[ProjectModels.ResponseModel])
+# def getAll(user_id: int, db: Session = Depends(get_db)):
+#     return project_script.getAllProjects(db, user_id)
+
+
+
 # add new card
 @app.post("/add_new_card", status_code=200, response_model=CardModels.ResponseModel)
 def addCard(card: CardModels.RequestModel, db: Session=Depends(get_db)):
@@ -85,7 +89,7 @@ def updateCardText(card:CardModels.UpdateTextModel, db: Session=Depends(get_db))
     return card_script.updateCardText(db, card)
 
 @app.post("/update_card_rank", status_code=200)
-def updateCardRank(cards:dict = {"cards": List[CardModels.UpdateRankModel]}, db: Session=Depends(get_db)):
+def updateCardRank(cards:CardModels.UpdateCardRankRequest, db: Session=Depends(get_db)):
     return card_script.updateCardRank(db, cards["cards"])
 
 # delete card

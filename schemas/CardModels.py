@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
 class RequestModel(BaseModel):
     text: str
@@ -16,6 +16,10 @@ class UpdateRankModel(BaseModel):
     text: str
     category_id: int
     rank: int
+
+class UpdateCardRankRequest(BaseModel):
+    cards: List[UpdateRankModel]
+
 
 class DeleteModel(BaseModel):
     card_id: int

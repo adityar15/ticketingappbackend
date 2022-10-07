@@ -23,6 +23,7 @@ def addNew(db, payload):
 
 
 def getAllProjects(db, userID):
+    print(db.query(Project).filter(Project.user_id == userID).all())
     return db.query(Project).filter(Project.user_id == userID).all()
 
 
