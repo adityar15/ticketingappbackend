@@ -4,9 +4,9 @@ from sqlalchemy.orm import sessionmaker
 
 
 username = "root"
-password = "yourpassword"
-database = "ticketing"
-host = "127.0.0.1"
+password = "aditya1234"
+database = "ticketing_live"
+host = "ticketing-live.crwd16wegxtp.eu-west-2.rds.amazonaws.com"
 
 SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{username}:{password}@{host}/{database}"
 
