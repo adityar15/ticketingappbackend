@@ -27,7 +27,6 @@ def createUser(user: UserModels.RequestModel, db):
 def login(user: UserModels.LoginRequestModel, db):
 
     existingUser = getUserByEmail(db, user.email)
-    
     if not existingUser:
         raise HTTPException(status_code=404, detail="User does not exist") 
 
