@@ -65,16 +65,16 @@ def login(user: UserModels.LoginRequestModel, db:Session=Depends(get_db)):
 def addNew(project: ProjectModels.RequestModel, db: Session = Depends(get_db)):
     return project_script.addNew(db, project)
 
-# get all projects
-@app.get("/get_projects/{user_id}", status_code=200, response_model=List[ProjectModels.ResponseModel], dependencies=[Depends(hasValidToken)])
-def getAll(user_id: int, db: Session = Depends(get_db)):
-    return project_script.getAllProjects(db, user_id)
-
-
-
-# @app.get("/get_projects/{user_id}", status_code=200, response_model=List[ProjectModels.ResponseModel])
+# # get all projects with secure token
+# @app.get("/get_projects/{user_id}", status_code=200, response_model=List[ProjectModels.ResponseModel], dependencies=[Depends(hasValidToken)])
 # def getAll(user_id: int, db: Session = Depends(get_db)):
 #     return project_script.getAllProjects(db, user_id)
+
+
+
+@app.get("/get_projects/{user_id}", status_code=200, response_model=List[ProjectModels.ResponseModel])
+def getAll(user_id: int, db: Session = Depends(get_db)):
+    return project_script.getAllProjects(db, user_id)
 
 
 
