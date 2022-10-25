@@ -35,3 +35,6 @@ class ResponseModel(BaseModel):
     name: str
     email: EmailStr
 
+    class Config:
+        orm_mode = True
+

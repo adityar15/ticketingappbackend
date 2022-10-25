@@ -40,6 +40,7 @@ def printMessage():
 @app.post("/register", status_code=200, response_model=UserModels.ResponseModel)
 def register(user: UserModels.RequestModel, db: Session = Depends(get_db)):
     createdUser = user_script.createUser(user, db)
+    print(createdUser)
     return createdUser
 
 
@@ -54,7 +55,6 @@ def login(user: UserModels.LoginRequestModel, db:Session=Depends(get_db)):
         # expires in seconds
         response.set_cookie(key="refresh_token", value=loggedInUser["refresh_token"], secure=True, httponly=True, expires=30 * 24 * 60 * 60)
         response.set_cookie(key="access_token", value=loggedInUser["token"], secure=True, expires=10 * 60 * 60)
-        print(response)
         return response
     return loggedInUser
 
